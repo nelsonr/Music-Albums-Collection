@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Music Albuns Wishlist</title>
+	<base href="http://localhost/musicalbums/" />
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div id="wrapper">
+		<div id="sidebar">
+			<ul class="menu">
+				<li{% if page == 'wishlist' %} class="active" {% endif %}><a href="wishlist">whishlist</a></li>
+				<li{% if page == 'coleccao' %} class="active" {% endif %}><a href="coleccao">colecção</a></li>
+				<li>sobre</li>
+			</ul>
+		</div>
+		<div id="main">
+			<div id="order">
+				Ordenar Por: <a href="{{ page }}/year" class="order{% if order == 'year' %} active{% endif %}">ano</a> /
+				<a href="{{ page }}/artist" class="order{% if order == 'artist' %} active{% endif %}">artista</a>
+			</div>
+			<div id="albums">
+				{% for album in albums %}
+				<div class="album">
+					<div class="cover" style="background-image: url(covers/{{ album.cover }});"></div>
+					<div class="info">
+						<div class="details">
+							<div class="title">{{ album.name }}</div>
+							<div class="artist">{{ album.artist }}</div>
+							<div class="year">{{ album.year }}</div>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
