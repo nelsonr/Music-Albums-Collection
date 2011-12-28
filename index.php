@@ -3,14 +3,14 @@ require 'Slim/Slim.php';
 require 'Views/TwigView.php';
 require 'lib/database.php';
 
-$app = new Slim(array('view' => 'TwigView'));
+$app = new Slim(array('view' => 'TwigView', 'http.version' => '1.0'));
 
 $app->get('/', function() use($app) {
 	$app->redirect('wishlist');
 });
 
 $app->get('/wishlist(/:order)', function($order = 'year') use($app) {
-	//$app->etag('wishlist');
+	$app->etag('wishlist');
 
 	$albums = Database::getAlbums('wishlist', $order);
 	$data = array('albums' => $albums, 'page' => 'wishlist', 'order' => $order);
@@ -19,7 +19,7 @@ $app->get('/wishlist(/:order)', function($order = 'year') use($app) {
 });
 
 $app->get('/coleccao(/:order)', function($order = 'year') use($app) {
-	//$app->etag('coleccao');
+	$app->etag('coleccao');
 
 	$albums = Database::getAlbums('collection', $order);
 	$data = array('albums' => $albums, 'page' => 'coleccao', 'order' => $order);
