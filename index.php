@@ -1,4 +1,7 @@
 <?php
+require_once 'Views/Twig/Autoloader.php';
+Twig_Autoloader::register();
+
 require 'Slim/Slim.php';
 require 'Views/TwigView.php';
 require 'lib/database.php';
